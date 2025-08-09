@@ -1,0 +1,9 @@
+*.pyc
+.ipynb
+*.ipynb_checkpoints
+__pycache__
+.env
+.pytest_cache
+MNIST/
+.DS_Store
+.vscode/
