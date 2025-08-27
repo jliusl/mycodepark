@@ -11,15 +11,18 @@ from count_days import count_days
 #     end = time.time()
 #     print(f"\n用例后置操作, 耗时: {end - start:.2f}s")
 
-@pytest.mark.parametrize("start_date, end_date, expected", [
-    ('2023.01.01', '2023.01.02', 1),
-    ('2023.01.01', '2023.01.01', 0),
-    ('2023.01.01', '2024.01.01', 365),
-])
+@pytest.mark.parametrize("t, start_date, end_date, expected", [
+    (0, '2023.01.01', '2023.01.02', 1),
+    (1, '2023.01.01', '2023.01.01', 0),
+    (2, '2023.01.01', '2024.01.01', 365),
+], indirect=["t"])  # indirect表示 "t" 是fixture的名称
+
+
 
 @pytest.mark.smoke
-def test_count_days(start_date, end_date, expected):
+def test_count_days(t, start_date, end_date, expected):
+
     print("用例执行")
-    print(start_date, end_date, expected)
+    print(t, start_date, end_date, expected)
     time.sleep(1)
     assert count_days(start_date, end_date) == expected

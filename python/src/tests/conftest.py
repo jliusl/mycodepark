@@ -1,9 +1,9 @@
 import pytest
 import time
 
-@pytest.fixture(scope="function", autouse=True, params=[x for x in range(3)], name="t")
+@pytest.fixture(scope="function", autouse=False, name="t")
 def timing(request):
-    print(f"\n用例前置操作, 第{request.param + 1}次")
+    print(f"\n用例前置操作, 第{request.param+1}次")  # request.param参数从 parametrize 中获取
     start = time.time()
     yield request.param
     end = time.time()

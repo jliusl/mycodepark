@@ -25,7 +25,7 @@ class Singleton:
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
-            cls._instance = super(Singleton, cls).__new__(cls)
+            cls._instance = super().__new__(cls)
         return cls._instance
 
     def __init__(self, value):
@@ -76,7 +76,7 @@ print(id(p2))
 """
 日志装饰器, 带参数的, 可以指定日志级别
 """
-def log_decorator(level):
+def log_level(level):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -86,7 +86,7 @@ def log_decorator(level):
         return wrapper
     return decorator
 
-@log_decorator('DEBUG')
+@log_level('DEBUG')
 def calc(a, b):
     return a + b
 
